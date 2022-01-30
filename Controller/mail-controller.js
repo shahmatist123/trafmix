@@ -4,7 +4,7 @@ exports.forgetPassword  = (req, res) => {
     const promise = new Promise(() =>{
         const transporter = nodemailer.createTransport({
             port: 25, //port
-            host: 'localhost',
+            host: 'trafmix.herokuapp.com',
             use_authentication: false,
         })
     })
@@ -17,6 +17,7 @@ exports.forgetPassword  = (req, res) => {
             html:
                 'This <i>message</i> was sent from <strong>Node js</strong> server.',
         })
+        console.log(result)
     })
 
 

@@ -32,5 +32,7 @@ exports.checkToken = (req, res) => {
         else{
             response.status(256, {message: "Пользователь не авторизован"}, res)
         }
+    }).then(res =>{
+        db.end()
     })
 }

@@ -43,6 +43,8 @@ exports.signup = (req, res) => {
                 }
             })
         }
+    }).then(res =>{
+        db.end()
     })
 }
 exports.singin = (req, res) => {
@@ -80,6 +82,8 @@ exports.singin = (req, res) => {
                 return true
             })
         }
+    }).then(res =>{
+        db.end()
     })
 }
 exports.logout = (req,res) =>{
@@ -111,5 +115,7 @@ exports.logout = (req,res) =>{
         else{
             response.status(256, {message: "Пользователь не авторизован"}, res)
         }
+    }).then(res =>{
+        db.end()
     })
 }

@@ -12,8 +12,8 @@ exports.forgetPassword  = (req, res) => {
         subject: 'Message',
         text: 'I hope this message gets delivered!'
     }, (err, info) => {
-        console.log(info.envelope);
-        console.log(info.messageId);
+        console.log(info);
+        console.log(info);
     });
 
 

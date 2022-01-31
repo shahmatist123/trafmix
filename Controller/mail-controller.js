@@ -1,30 +1,36 @@
 const nodemailer = require('nodemailer')
 const config = require('config')
 exports.forgetPassword  = (req, res) => {
-    async function send (){
-        let testAccount = await nodemailer.createTestAccount();
-        let transporter = nodemailer.createTransport({
-            port: 587,
-            secure: false, // true for 465, false for other ports
-            auth: {
-                user: testAccount.user, // generated ethereal user
-                pass: testAccount.pass, // generated ethereal password
-            },
+    function foo(email, password) {
+        nodemailer.createTestAccount(function(err, account) {
+            var transporter = nodemailer.createTransport({
+                host: 'smtp.ethereal.email',
+                port: 587,
+                secure: true,
+                auth: {
+                    user: account.user,
+                    pass: account.pass
+                }
+            });
+
+            var message = {
+                from: '"Heano" <games.1212@yandex.ru>',
+                to: email,
+                subject: 'Регистрация ✔',
+                text: 'Твой пароль: '+ password,
+                html: 'Твой пароль:<b> '+ password+'</b>'
+            };
+
+            transporter.sendMail(message, function (err, info) {
+                if (err) {
+                    console.log('Error:' + err.message);
+                    return;
+                }
+                console.log('Server responded with ' + info.response);
+            });
         });
-       const info = await transporter.sendMail({
-            from: 'sender@example.com',
-            to: req.body.email,
-            subject: 'Message',
-            text: 'I hope this message gets delivered!'
-        }, (err, info) => {
-        });
-       console.log(info)
     }
-    send().catch(error =>{
-        console.log(error)
-    });
-
-
+    foo(123,'asdasdas')
 
 
 }

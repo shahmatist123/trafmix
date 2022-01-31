@@ -1,11 +1,6 @@
 const mysql = require('mysql')
 const config = require('config');
-const connection = mysql.createConnection(config.get('db'))
 
-connection.connect((error) =>{
-    if (error){
-        return console.log(error)
+const connection =mysql.createPool(config.get('db'))
 
-    }
-})
 module.exports = connection

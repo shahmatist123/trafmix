@@ -1,5 +1,6 @@
 {
     "db": {
+        "connectionLimit" : 10,
         "host": "91.236.136.138",
         "user": "u770843_trafmix",
         "password": "jT5pW7gZ8mkX2d",
@@ -7,5 +8,15 @@
     },
     "bcriptStr" : "a12)sd 4 23z;[']xc",
     "jwtKey" : "asd (0-+_)';{}{[]qw84eaz12xc",
-    "email" : "trafmix@no-reply.ru"
+    "clientUrl" : "http://localhost:3000/",
+    "email" : {
+        "host": "smtp.gmail.com",
+        "port": 465,
+        "secure": true,
+        "auth": {
+            "user": "khggcvfd@gmail.com",
+            "pass": "fgbcphzrzqcvhmmr"
+        }
+
+    }
 }

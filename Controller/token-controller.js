@@ -5,12 +5,10 @@ const jwt = require("jsonwebtoken");
 exports.checkToken = (req, res) => {
     const oldToken = req.headers.authorization
     db.query("SELECT * FROM users WHERE refreshtoken = '" + oldToken + "'", (error, rows, fields) => {
-        console.log(rows.length)
         if (error){
             response.status(400, error, res)
         }
         else if (rows.length > 0){
-
             const AccessToken = jwt.sign({
                 email: rows[0].email
             }, config.get('jwtKey'), {expiresIn: "1h"})
@@ -32,7 +30,19 @@ exports.checkToken = (req, res) => {
         else{
             response.status(256, {message: "Пользователь не авторизован"}, res)
         }
-    }).then(res =>{
-        db.end()
+    })
+}
+exports.forgetCheck = (req, res) => {
+    const oldToken = req.body.token
+    db.query("SELECT * FROM users WHERE resetpassword = '" + oldToken + "'", (error, rows, fields) => {
+        if (error){
+            response.status(400, error, res)
+        }
+        else if (rows.length > 0){
+            response.status(200, {token: true,message: ""}, res)
+        }
+        else{
+            response.status(256, {message: "Неверная ссылка"}, res)
+        }
     })
 }

@@ -14,7 +14,7 @@ exports.forgetPassword  = (req, res) => {
             });
 
             var message = {
-                from: '"Heano" <games.1212@yandex.ru>',
+                from: 'trafmix.herokuapp@no-reply.com',
                 to: email,
                 subject: 'Регистрация ✔',
                 text: 'Твой пароль: '+ password,
